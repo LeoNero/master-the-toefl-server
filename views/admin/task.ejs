@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin hehe</title>
+    <meta charset='utf-8'>
+    <meta name='viewport' content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>  
+    <header class="row-fluid text-center">
+      <h2>Task details</h2>
+    </header>
+
+    <form action="/admin/task/<%- task._id %>?_method=DELETE" method="post" class="well">
+      <section class="row-fluid text-center">
+        <label>Number:</label>
+        <span class="input-medium uneditable-input"><%- task.number %></span>
+      </section>
+      <section class="row-fluid text-center">
+        <label>Type:</label>
+        <span class="input-medium uneditable-input"><%- task.type %></span>
+      </section>
+      <section class="row-fluid text-center">
+        <label>Question:</label>
+        <span class="input-medium uneditable-textarea"><%- task.question %></span>
+      </section>
+      <section class="row-fluid text-center">
+        <label>Audio URL:</label>
+        <span class="input-medium uneditable-input"><%- task.audio_url %></span>
+      </section>
+      <section class="row-fluid text-center">
+        <label>Reading</label>
+        <span class="input-medium uneditable-textarea"><%- task.reading %></span>
+      </section>
+
+      <a href="/admin/task/<%- task._id %>/edit" class="btn btn-info">Editar</a>
+      <button type="submit" class="btn btn-danger">Excluir</button>
+    </form>  
+  </body>
+</html>

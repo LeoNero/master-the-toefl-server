@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin hehe</title>
+    <meta charset='utf-8'>
+    <meta name='viewport' content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>  
+    <header class="row-fluid text-center">
+      <h2>Edit task</h2>
+    </header>
+
+    <section class="row-fluid">
+      <section class="span12">
+        <form action="/admin/task/<%- task._id %>?_method=PUT" method="post" class="well form-inline row-fluid text-center">
+          <input type="number" min="1" max="6" name="number" value="<%- task.number %>" class="form-control">
+
+          <select class="form-control" name="type">
+            <option value="Personal Preference">1- Personal Preference</option>
+            <option value="Paired Choice">2- Paired Choice</option>
+            <option value="Announcement/Discussion">3- Announcement/Discussion</option>
+            <option value="General/Specific">4- General/Specific</option>
+            <option value="Problem/Solution">5- Problem/Solution</option>
+            <option value="Summary">6- Summary</option>
+          </select>
+
+          <textarea class="form-control" name="question"><%- task.question %></textarea>
+          <textarea class="form-control" name="reading"><%- task.reading %></textarea>
+          <input type="text" name="audio_url" value="<%- task.audio_url %>" class="form-control">
+
+          <button type="submit" class="btn btn-primary">Update task</button>
+        </form>
+      </section>
+    </section>
+  </body>
+</html>

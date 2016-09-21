@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin hehe</title>
+    <meta charset='utf-8'>
+    <meta name='viewport' content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>  
+      
+    <header class="row-fluid text-center">
+      <h2>Tasks</h2>
+    </header>
+
+    <section class="row-fluid">
+      <section class="span12">
+        <form action="/admin/task/add" method="post" class="well form-inline row-fluid text-center">
+          <input type="number" min="1" max="6" name="number" placeholder="Number" class="form-control">
+
+          <select class="form-control" name="type">
+            <option value="Personal Preference">1- Personal Preference</option>
+            <option value="Paired Choice">2- Paired Choice</option>
+            <option value="Announcement/Discussion">3- Announcement/Discussion</option>
+            <option value="General/Specific">4- General/Specific</option>
+            <option value="Problem/Solution">5- Problem/Solution</option>
+            <option value="Summary">6- Summary</option>
+          </select>
+
+          <textarea class="form-control" name="question" placeholder="Question:"></textarea>
+          <textarea class="form-control" name="reading" placeholder="Reading"></textarea>
+          <input type="text" name="audio_url" placeholder="Audio URL" class="form-control">
+
+          <button type="submit" class="btn btn-primary">Save task</button>
+        </form>
+
+        <table class="table well">
+          <thead>
+            <tr>
+              <th>Number</th>
+              <th>Type</th>
+              <th>Question</th>
+              <th>Audio</th>
+              <th>Reading</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% tasks.forEach(function(task) { %>
+              <tr>
+                <td><%- task.number %></td>
+                <td><%- task.type %></td>
+                <td><%- task.question %></td>
+                <td><%- task.audio_url %></td>
+                <td><%- task.reading %></td>
+                <td><%- task.time %></td>
+                <td>
+                  <form action="/admin/task/<%- task._id %>?_method=DELETE" method="post" class="well form-inline">
+                    <a href="/admin/task/<%- task._id %>" class="btn btn-info">Show</a>
+                    <a href="/admin/task/<%- task._id %>/edit" class="btn btn-info">Editar</a>
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                  </form>                
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </section>
+    </section>
+
+  </body>
+</html>
