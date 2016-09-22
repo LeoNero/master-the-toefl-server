@@ -19,8 +19,6 @@ exports.handleError = (res, err) => {
 };
 
 exports.ensureAuthenticated = (req, res, next) => {
-  console.log(req.headers);
-
   if (!req.headers.authorization) {
     return res.status(401).send({ message: 'Please make sure your request has an Authorization header' });
   }

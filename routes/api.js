@@ -19,5 +19,7 @@ module.exports = (app, corsOptions) => {
   app.get('/api/audio/:shortId/feedbacks', cors(corsOptions), apiController.getAudioFeedbacks);
   app.delete('/api/feedback/:id', [cors(corsOptions), authUtils.ensureAuthenticated], apiController.deleteFeedbackById);
 
+  app.post('/api/user/change_pontuation', [cors(corsOptions), authUtils.ensureAuthenticated], apiController.changeUserPontuation)
+
   app.post('/api/contact/new', cors(corsOptions), apiController.newContact);
 };

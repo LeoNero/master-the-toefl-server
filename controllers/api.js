@@ -182,11 +182,42 @@ const ApiController = {
   deleteAudioById(req, res) {
     Audio.findByIdAndRemove(req.params.id, (err, audio) => {
       if (err) {
-        console.log(err);
         res.status(500).json(err);
       }
 
+      fs.unlink(__dirname + '/../uploads/' + req.params.id + '.wav', (err) => {
+        if (err) {
+          res.status(500).json(err);
+        }
+      })
+
       res.send({msg: 'Audio removed!'});
+    });
+  },
+
+  changeUserPontuation(req, res) {
+    User.findById(req.body.user_id, (err, user) => {
+      if (err) {
+        res.status(500).json(err);
+      }  
+
+      if (req.body.type == 'add_point') {
+        user.points += 1;
+      } else if (req.body.type == 'remove_point') {
+        if (user.points == 0) {
+          user.points = 0;
+        } else {
+          user.points = user.points - 1;
+        }
+      }
+
+      user.save((err) => {
+        if (err) {
+          res.status(500).json(err);
+        }
+
+        res.send({msg: 'Pontuation updated!', points: user.points});  
+      })
     });
   },
 

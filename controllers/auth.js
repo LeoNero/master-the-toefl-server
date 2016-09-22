@@ -66,8 +66,6 @@ const AuthController = {
               return res.send({ token: token });
             }
 
-            console.log(profile);
-
             let user = new User();
 
             user.name = profile.name;
@@ -80,7 +78,6 @@ const AuthController = {
               }
 
               let token = authUtils.createJWT(user);
-              console.log(user);
 
               console.log("User saved! 2");
               res.send({ token: token });
