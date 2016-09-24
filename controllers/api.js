@@ -27,7 +27,7 @@ const ApiController = {
 
   getAllAudios(req, res) {
     Audio
-      .paginate({}, { page: req.params.page, limit: 9, populate: ['postedBy', 'task'], sortBy: {date: -1} }, (err, result) => {
+      .paginate({}, { page: req.params.page, limit: 9, populate: ['postedBy', 'task'], sort: {date: -1} }, (err, result) => {
         if (err) {
           res.status(500).json(err);
         } else {
@@ -41,6 +41,7 @@ const ApiController = {
       .find({'shortId': sanitize(req.params.shortId)})
       .populate('task')
       .populate('feedbacks')
+      .populate('postedBy')
       .exec((err, audio) => {
         if (err) {
           res.status(500).json(err);
@@ -189,7 +190,9 @@ const ApiController = {
         if (err) {
           res.status(500).json(err);
         }
-      })
+      });
+
+      audio.feedbacks.remove();
 
       res.send({msg: 'Audio removed!'});
     });
