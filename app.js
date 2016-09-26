@@ -15,7 +15,7 @@ const app = express();
 
 let corsOptions = {
   origin: function(origin, callback) {
-    let originIsWhitelisted = ['http://localhost:9000', 'http://masterthetoefl.xyz', 'https://masterthetoefl.xyz', 'www.masterthetoefl.xyz'].indexOf(origin) !== -1;
+    let originIsWhitelisted = ['http://localhost:9000', 'http://masterthetoefl.xyz', 'https://masterthetoefl.xyz', 'www.masterthetoefl.xyz', 'https://www.masterthetoefl.xyz'].indexOf(origin) !== -1;
     callback(originIsWhitelisted ? null : 'Bad Request', originIsWhitelisted);
   },
   methods: ["GET", "POST", "PUT", "DELETE"],

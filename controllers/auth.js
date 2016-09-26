@@ -14,11 +14,19 @@ const AuthController = {
   facebook(req, res) {
     const accessTokenUrl = 'https://graph.facebook.com/v2.3/oauth/access_token';
     const graphApiUrl = 'https://graph.facebook.com/v2.3/me';
-  
+    
+    let facebookSecret;
+
+    if (req.body.clientId == '1546232092069197') {
+      facebookSecret = config.FACEBOOK_SECRET_DEV;
+    } else {
+      facebookSecret = config.FACEBOOK_SECRET_PROD;
+    }
+
     const params = {
       code: req.body.code,
       client_id: req.body.clientId,
-      client_secret: config.FACEBOOK_SECRET,
+      client_secret: facebookSecret,
       redirect_uri: req.body.redirectUri
     };
 
