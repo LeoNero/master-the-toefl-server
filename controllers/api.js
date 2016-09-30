@@ -27,7 +27,7 @@ const ApiController = {
 
   getAllAudios(req, res) {
     Audio
-      .paginate({}, { page: req.params.page, limit: 9, populate: ['postedBy', 'task'], sort: {date: -1} }, (err, result) => {
+      .paginate({}, { page: req.params.page, limit: 9, populate: ['postedBy', 'task'], sort: {uploadDate: -1} }, (err, result) => {
         if (err) {
           res.status(500).json(err);
         } else {
