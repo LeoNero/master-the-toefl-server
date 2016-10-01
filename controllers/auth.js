@@ -56,6 +56,7 @@ const AuthController = {
               }
 
               user.name = user.name || profile.name;
+              user.email = user.email || profile.email;
               user.facebook = user.facebook || profile.id;
 
               user.save(() => {
@@ -76,6 +77,7 @@ const AuthController = {
             let user = new User();
 
             user.name = profile.name;
+            user.email = profile.email;
             user.facebook = profile.id;
 
             user.save((err) => {
