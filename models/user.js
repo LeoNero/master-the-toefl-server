@@ -9,13 +9,6 @@ const UserSchema = Schema({
     required: true
   },
 
-  email: {
-    type: String,
-    index: {
-      unique: true
-    }
-  },
-
   facebook: {
     type: String,
     required: true,
